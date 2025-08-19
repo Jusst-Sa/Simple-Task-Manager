@@ -2,6 +2,7 @@ import React from 'react'
 import './TaskInput.css'
 import { useContext } from 'react';
 import { TaskContext } from './contexts/TaskContext';
+import { motion, scale } from 'motion/react';
 import TaskComponent from './TaskComponent';
 
 function TaskInput() {
@@ -9,7 +10,9 @@ function TaskInput() {
   const [input, setInput, tasks, setTasks] = useContext(TaskContext) 
 
   const addTask = () => {
-    setTasks([...tasks, {id: Date.now(), text: input }])
+    if(input){
+      setTasks([...tasks, {id: Date.now(), text: input }])
+    }
   }
 
   return (
@@ -28,10 +31,11 @@ function TaskInput() {
       }
     }}
     />
+    <motion.div whileTap={{ scale: 0.9 }}>
     <button className='task-add' 
     onClick={() => {addTask();}}
-    
     >Add Task</button>
+    </motion.div>
     </div>
     </>
   )

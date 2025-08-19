@@ -2,10 +2,10 @@
 .task-card-unset{
     background-color: rgb(89, 89, 224);
     display: flex;
-    padding: 1em;
+    padding: 0.2em 2em ;
     border-radius: 1.2em;
     margin: 1em;
-    max-width: 20em;
+    max-width: fit-content;
     text-align: center;
     justify-content: center;
 }
@@ -14,5 +14,6 @@
     font-weight: bold;
     font-size: 1.2em;
 }
+
 
 

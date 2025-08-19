@@ -1,0 +1,7 @@
+.no-task-div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 3em;
+}
+

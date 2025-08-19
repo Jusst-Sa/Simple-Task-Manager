@@ -1,27 +1,23 @@
-import React from 'react'
-import './TaskComponent.css'
-import { useContext } from 'react'
-import { TaskContext } from './contexts/TaskContext'
+import React from "react";
+import "./TaskComponent.css";
 
-function TaskComponent({text}) {
+// import Draggable from "react-draggable";
+import { motion } from "motion/react";
 
-    // console.log(Date.now());
-
-    // const [, ,tasks,] = useContext(TaskContext)
-    
+function TaskComponent({ text }) {
 
   return (
     <>
-    
-    <div className='task-card-unset'>
-      <p className='card-content'>{text}</p>
-        {/* <p className='card-content'>{input}</p> */}
-        {/* {tasks.map((task)=>(
+    <motion.div className="task-card-unset" drag whileTap={{ scale: 0.9 }}>
+            <p className="card-content">{text}</p>
+            {/* <p className='card-content'>{input}</p> */}
+            {/* {tasks.map((task)=>(
           <p key={task.id} className='card-content'>{task.text}</p>
         ))} */}
-    </div>
+      </motion.div> 
+    
     </>
-  )
+  );
 }
 
-export default TaskComponent
+export default TaskComponent;
