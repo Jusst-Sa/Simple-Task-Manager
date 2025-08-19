@@ -1,0 +1,22 @@
+body{
+    font-family: system-ui;
+}
+.input-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-component{
+    font-weight: bold;
+    font-size: 1em;
+    margin: 1em;
+    border: 2px solid ;
+    padding: 1em;
+    flex-grow: 1;
+    max-width: 30em;
+}
+.task-add{
+    padding: 1em;
+    border-radius: 1.1em;
+    cursor: pointer;
+}
