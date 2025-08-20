@@ -12,6 +12,7 @@ function TaskInput() {
   const addTask = () => {
     if(input){
       setTasks([...tasks, {id: Date.now(), text: input }])
+      setInput("");
     }
   }
 
@@ -21,6 +22,7 @@ function TaskInput() {
     <input 
     className='input-component' 
     type="text" 
+    value={input}
     placeholder='Enter a task'
     onChange={(event) => {
       setInput(event.target.value);
@@ -29,6 +31,7 @@ function TaskInput() {
       if(event.key === 'Enter'){
         addTask();
       }
+      
     }}
     />
     <motion.div whileTap={{ scale: 0.9 }}>
