@@ -9,10 +9,25 @@ import { TaskContext } from '../contexts/TaskContext'
 function TaskColumn() {
 
     
-    const [,,tasks,] = useContext(TaskContext)
+    const [,,tasks, setTasks] = useContext(TaskContext)
 
     function handleDragEnd(event){
-        console.log('drag end');
+        // console.log('drag end called');
+        const { active, over } = event;
+
+        if( active.id !== over.id){
+            setTasks((tasks)=>{
+                const activeIndex = tasks.findIndex((task) => { return task.id === active.id})
+                const overIndex = tasks.findIndex((task) => { return task.id === over.id})
+
+
+                //array move function
+                // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]
+                // arrayMove();
+               return arrayMove(tasks, activeIndex, overIndex);
+
+            })
+        }
     }
 
   return (

@@ -9,10 +9,15 @@ import TaskColumn from "./TaskColumn/TaskColumn";
 function TaskContainer() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
+  const columns = [
+    { id: 'todo', title: 'To Do' },
+    { id: 'inprogress', title: 'In Progress' },
+    { id: 'done', title: 'Done' }
+  ];
 
   return (
     <>
-      <TaskContext.Provider value={[input, setInput, tasks, setTasks]}>
+      <TaskContext.Provider value={[input, setInput, tasks, setTasks, columns]}>
         <TaskInput />
 
         <div>

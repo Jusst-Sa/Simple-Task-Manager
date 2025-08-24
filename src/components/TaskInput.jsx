@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TaskInput.css'
 import { useContext } from 'react';
 import { TaskContext } from './contexts/TaskContext';
@@ -7,11 +7,13 @@ import TaskComponent from './TaskComponent';
 
 function TaskInput() {
 
+
   const [input, setInput, tasks, setTasks] = useContext(TaskContext) 
+  
 
   const addTask = () => {
     if(input){
-      setTasks([...tasks, {id: Date.now(), text: input }])
+      setTasks([...tasks, {id: Date.now(), text: input, status: 'todo' }])
       setInput("");
     }
   }
