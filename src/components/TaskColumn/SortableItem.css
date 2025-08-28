@@ -1,29 +1,25 @@
-.Task-Div{
-    background-color: rgb(89, 89, 224);
-    display: flex;
-    padding: 0.2em 8em ;
-    border-radius: 1.2em;
-    margin: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    text-align: center;
-    justify-content: center;
-    max-width: 10em;
+.Task-Div {
+  background-color: rgb(89, 89, 224);
+  display: flex;
+  padding: 0.2em 1em;
+  border-radius: 1.2em;
+  margin: 1em;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  width: 80%;
 }
-.Task-Div1{
-    opacity: 40%;
- background-color: rgb(89, 89, 224);
-    display: flex;
-    padding: 1.5em 8em ;
-    border-radius: 1.2em;
-    margin: 1em;
-    border: 2px solid white;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    text-align: center;
-    justify-content: center;
-    width: 90%;
-    box-sizing: border-box;
+.Task-Div1 {
+  opacity: 40%;
+  background-color: rgb(89, 89, 224);
+  display: flex;
+  padding: 1.5em 3em;
+  border-radius: 1.2em;
+  margin: 1em;
+  border: 2px solid #F42C04;
+  justify-content: center;
+  text-align: center;
+  justify-content: center;
+  width: 90%;
+  box-sizing: border-box;
 }

@@ -1,12 +1,12 @@
 
 .task-card-unset{
-    width: auto;
-    
+
 }
 .card-content{
     font-family: system-ui;
     font-weight: bold;
     font-size: 1em;
+    align-items: stretch;
     
 }
 

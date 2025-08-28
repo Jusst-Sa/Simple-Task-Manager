@@ -20,11 +20,23 @@ import {
 function TaskContainer() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
-  const columns = [
-    { id: "todo", title: "To Do" },
-    { id: "inprogress", title: "In Progress" },
-    { id: "done", title: "Done" },
-  ];
+  const [columns, setColumns] = useState([
+    {
+      id: 'todo',
+      title: 'To Do',
+    },
+    {
+      id: 'inProgress',
+      title: 'In Progress',
+    },
+    {
+      id: 'completed',
+      title: 'Completed',
+    }])
+
+  // const columnId = useMemo(() => {
+  //         return columns.map((col) => col.id);
+  //      }, [columns])
 
   const [activeTask, setActiveTask] = useState(null);
 
@@ -44,12 +56,19 @@ function TaskContainer() {
         {/* <div>
           <TaskColumn />
         </div> */}
+        {tasks.length == 0 ?
+          <div className="cond-header">
+            <h2>You did not input a task</h2>
+          </div>
+          :
+          <div />
+        }
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragStart={(event) => {
-            const dragged = tasks.find((t) => t.id === event.active.id);
-            setActiveTask(dragged || null);
+            const isTask = tasks.find((t) => t.id === event.active.id);
+            setActiveTask(isTask || null);
           }}
           onDragOver={(event) => {
             const { active, over } = event;
@@ -60,19 +79,27 @@ function TaskContainer() {
 
             if (activeId === overId) return;
 
-            setTasks((tasks)=>{
-            const activeIndex = tasks.findIndex((task) => {
-              return task.id === active.id;
-            });
-            const overIndex = tasks.findIndex((task) => {
-              return task.id === over.id;
-            });
+            setTasks((tasks) => {
+              const activeIndex = tasks.findIndex((task) => {
+                return task.id === active.id;
+              });
+              const overIndex = tasks.findIndex((task) => {
+                return task.id === over.id;
+              });
 
-            //array move function
-            // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]
-            // arrayMove();
-            return arrayMove(tasks, activeIndex, overIndex);
-          })
+              const isColumn = columns.find((col) => col.id === overId);
+              if (isColumn) {
+                tasks[activeIndex].status = overId;
+                return [...tasks];
+              }
+
+              tasks[activeIndex].status = tasks[overIndex].status
+
+              //array move function
+              // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]
+              // arrayMove();
+              return arrayMove(tasks, activeIndex, overIndex);
+            })
           }}
           onDragEnd={() => setActiveTask(null)}
           onDragCancel={() => setActiveTask(null)}
@@ -82,7 +109,9 @@ function TaskContainer() {
           </div>
           <DragOverlay>
             {activeTask ? (
-              <SortableItem id={activeTask.id} task={activeTask} />
+              <div>
+                <SortableItem id={activeTask.id} task={activeTask} />
+              </div>
             ) : null}
           </DragOverlay>
         </DndContext>

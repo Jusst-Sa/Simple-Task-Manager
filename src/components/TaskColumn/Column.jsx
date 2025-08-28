@@ -1,34 +1,29 @@
 import ColumnContainer from './ColumnContainer'
 import './Column.css'
-import React from 'react'
-import { useState } from 'react'
+import { useContext } from 'react'
+import { TaskContext } from '../contexts/TaskContext'
+import { useDroppable } from '@dnd-kit/core'
 
 function Column() {
 
-    const [columns, setColumns] = useState([
-        {
-            id: 'todo',
-            title: 'To Do',
-    },
-    {
-        id: 'inProgress',
-            title: 'In Progress',
-    },
-    {
-        id: 'completed',
-            title: 'Completed',
-    }])
+    const [,,,,columns] = useContext(TaskContext)
 
 
   return (
     <>
-    <div className='col-map-par'>
-        <div className='col-map'>
-            {columns.map((col) => (
-                <ColumnContainer key={col.id} col={col}/>
-            ))}
-        </div>
-        </div>
+      <div className="col-map-par">
+      <div className="col-map">
+        {columns.map((col) => {
+          const { setNodeRef } = useDroppable({ id: col.id });
+
+          return (
+            <div ref={setNodeRef} className="column">
+              <ColumnContainer key={col.id} col={col} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
     </>
   )
 }

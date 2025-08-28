@@ -1,5 +1,13 @@
 body{
   overflow: scroll;
+  background-color: #0F1A20;
+}
+.cond-header{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.5em;
+  color: #ADA296;
 }
 
 .colo{
