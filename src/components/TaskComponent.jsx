@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 function TaskComponent({ text }) {
   return (
     <motion.div
+      layout
       className="task-card-unset"
       whileTap={{ scale: 0.97 }}
     >

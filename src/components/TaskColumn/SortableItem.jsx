@@ -3,6 +3,7 @@ import { CSS } from "@dnd-kit/utilities";
 import Card from "react-bootstrap/Card";
 import TaskComponent from "../TaskComponent";
 import { motion } from "motion/react";
+import './SortableItem.css'
 
 export function SortableItem({task, id}){
     const { 
@@ -20,9 +21,10 @@ export function SortableItem({task, id}){
 
     return(
         <>
-            <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+            <div className="Task-Div" ref={setNodeRef} style={style} {...attributes} {...listeners}>
                  
                 <TaskComponent text={task.text} />
+                
             
             </div>
         </>

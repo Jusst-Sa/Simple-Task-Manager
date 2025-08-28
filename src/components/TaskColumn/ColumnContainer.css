@@ -1,0 +1,21 @@
+.colcol{
+    background-color: rgb(149, 151, 155);
+    width: 350px;
+    height: 500px;
+    max-height: 500px;
+    flex-direction: column;
+    border-radius: 1.5em;
+}
+.col-title{
+    background-color: rgb(255, 255, 255);
+    padding: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+.col-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}

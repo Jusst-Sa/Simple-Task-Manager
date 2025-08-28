@@ -4,15 +4,16 @@ import TaskInput from "./TaskInput";
 import { useState } from "react";
 import { TaskContext } from "./contexts/TaskContext";
 import "./TaskContainer.css";
-import TaskColumn from "./TaskColumn/TaskColumn";
+import Column from "./TaskColumn/Column";
+// import TaskColumn from "./TaskColumn/TaskColumn";
 
 function TaskContainer() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
   const columns = [
-    { id: 'todo', title: 'To Do' },
-    { id: 'inprogress', title: 'In Progress' },
-    { id: 'done', title: 'Done' }
+    { id: "todo", title: "To Do" },
+    { id: "inprogress", title: "In Progress" },
+    { id: "done", title: "Done" },
   ];
 
   return (
@@ -20,9 +21,14 @@ function TaskContainer() {
       <TaskContext.Provider value={[input, setInput, tasks, setTasks, columns]}>
         <TaskInput />
 
-        <div>
+        {/* <div>
           <TaskColumn />
+        </div> */}
+
+        <div className="colo">
+          <Column />
         </div>
+
       </TaskContext.Provider>
     </>
   );

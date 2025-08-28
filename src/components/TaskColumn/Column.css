@@ -1,0 +1,11 @@
+.col-map-par{
+    margin: auto;
+    display: flex;
+    gap: 4em;
+}
+
+.col-map{
+    margin: auto;
+    display: flex;
+    gap: 4em;
+}

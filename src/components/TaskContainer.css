@@ -1,3 +1,17 @@
+body{
+  overflow: scroll;
+}
+
+.colo{
+  display: flex;
+  width: 100%;
+  min-height: screen;
+  align-items: center;
+  margin: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .no-task-div{
     display: flex;
     justify-content: center;
