@@ -1,4 +1,5 @@
 .colcol{
+    display: flex;
     background-color: rgb(149, 151, 155);
     width: 350px;
     height: 500px;
@@ -15,7 +16,7 @@
 .col-content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+ justify-content: flex-start;
     align-items: center;
     
 }

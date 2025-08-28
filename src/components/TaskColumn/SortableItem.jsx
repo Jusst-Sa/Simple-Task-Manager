@@ -11,12 +11,24 @@ export function SortableItem({task, id}){
         listeners,
         setNodeRef,
         transform,
-        transition
+        transition,
+        isDragging
     } = useSortable({id: id})
 
     const style = {
         transform: CSS.Transform.toString(transform),
         transition
+    }
+
+    if(isDragging){
+        return(
+            <>
+            <div ref={setNodeRef}
+            style={style}
+            className="Task-Div1"
+            />
+            </>
+        )
     }
 
     return(

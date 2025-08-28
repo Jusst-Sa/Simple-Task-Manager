@@ -1,16 +1,6 @@
 
 .task-card-unset{
-    background-color: rgb(89, 89, 224);
-    display: flex;
-    padding: 0.2em 1em ;
-    border-radius: 1.2em;
-    margin: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-    text-align: center;
-    justify-content: center;
-    max-width: 10em;
+    width: auto;
     
 }
 .card-content{
