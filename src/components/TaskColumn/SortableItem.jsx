@@ -35,7 +35,7 @@ export function SortableItem({task, id}){
         <>
             <div className="Task-Div" ref={setNodeRef} style={style} {...attributes} {...listeners}>
                  
-                <TaskComponent text={task.text} />
+                <TaskComponent  key={task.id} text={task.text} issuedDate={task.issuedDate} completedDate={task.completedDate} status={task.status} />
                 
             
             </div>

@@ -6,6 +6,7 @@ import { arrayMove } from "@dnd-kit/sortable";
 import { TaskContext } from "./contexts/TaskContext";
 import "./TaskContainer.css";
 import Column from "./TaskColumn/Column";
+import { getDate } from "./utils/date";
 import { SortableItem } from "./TaskColumn/SortableItem";
 import {
   DndContext,
@@ -78,14 +79,15 @@ function TaskContainer() {
             const overId = over.id;
 
             if (activeId === overId) return;
+            const activeIndex = tasks.findIndex((task) => {
+              return task.id === active.id;
+            });
+            const overIndex = tasks.findIndex((task) => {
+              return task.id === over.id;
+            })
 
             setTasks((tasks) => {
-              const activeIndex = tasks.findIndex((task) => {
-                return task.id === active.id;
-              });
-              const overIndex = tasks.findIndex((task) => {
-                return task.id === over.id;
-              });
+              ;
 
               const isColumn = columns.find((col) => col.id === overId);
               if (isColumn) {
@@ -95,11 +97,29 @@ function TaskContainer() {
 
               tasks[activeIndex].status = tasks[overIndex].status
 
+
+
               //array move function
               // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]
               // arrayMove();
+              
               return arrayMove(tasks, activeIndex, overIndex);
             })
+            if (tasks[activeIndex].status == "completed") {
+
+              setTasks((tasks) =>
+                tasks.map((task, index) => {
+                  if (index === activeIndex) {
+                    const updatedTask = { ...task, status: "completed" };
+                    if (!updatedTask.completedDate) {
+                      updatedTask.completedDate = getDate();
+                    }
+                    return updatedTask;
+                  }
+                  return task;
+                })
+              );
+            }
           }}
           onDragEnd={() => setActiveTask(null)}
           onDragCancel={() => setActiveTask(null)}

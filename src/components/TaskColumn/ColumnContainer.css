@@ -21,3 +21,12 @@
   align-items: center;
   flex-grow: 1;
 }
+
+.col-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.col-content::-webkit-scrollbar-thumb {
+  background-color: #3657ba;
+  border-radius: 4px;  
+}

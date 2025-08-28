@@ -17,8 +17,8 @@ function Column() {
           const { setNodeRef } = useDroppable({ id: col.id });
 
           return (
-            <div ref={setNodeRef} className="column">
-              <ColumnContainer key={col.id} col={col} />
+            <div  key={col.id} ref={setNodeRef} className="column">
+              <ColumnContainer col={col} />
             </div>
           );
         })}
