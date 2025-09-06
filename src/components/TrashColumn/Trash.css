@@ -1,0 +1,22 @@
+.trash-content {
+  background-color: #ada296;
+  border-radius: 2em;
+  padding: 3em;
+  margin: 2em;
+  flex-grow: 1;
+  max-width: 15em;
+}
+
+.trash-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  
+}
+.trash-icon{
+  max-width: 4em;
+  max-height: 4em;
+  padding: 2em;
+
+}

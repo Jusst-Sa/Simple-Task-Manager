@@ -16,24 +16,27 @@ import {
   useSensors,
   DragOverlay,
 } from "@dnd-kit/core";
+import Trash from "./TrashColumn/Trash";
 // import TaskColumn from "./TaskColumn/TaskColumn";
 
 function TaskContainer() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [trashCol, setTrashCol] = useState([{ id: "trash", title: "Trash" }]);
   const [columns, setColumns] = useState([
     {
-      id: 'todo',
-      title: 'To Do',
+      id: "todo",
+      title: "To Do",
     },
     {
-      id: 'inProgress',
-      title: 'In Progress',
+      id: "inProgress",
+      title: "In Progress",
     },
     {
-      id: 'completed',
-      title: 'Completed',
-    }])
+      id: "completed",
+      title: "Completed",
+    },
+  ]);
 
   // const columnId = useMemo(() => {
   //         return columns.map((col) => col.id);
@@ -51,19 +54,21 @@ function TaskContainer() {
 
   return (
     <>
-      <TaskContext.Provider value={[input, setInput, tasks, setTasks, columns]}>
+      <TaskContext.Provider
+        value={[input, setInput, tasks, setTasks, columns, trashCol]}
+      >
         <TaskInput />
 
         {/* <div>
           <TaskColumn />
         </div> */}
-        {tasks.length == 0 ?
+        {tasks.length == 0 ? (
           <div className="cond-header">
             <h2>You did not input a task</h2>
           </div>
-          :
+        ) : (
           <div />
-        }
+        )}
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
@@ -84,29 +89,30 @@ function TaskContainer() {
             });
             const overIndex = tasks.findIndex((task) => {
               return task.id === over.id;
-            })
+            });
 
             setTasks((tasks) => {
-              ;
-
               const isColumn = columns.find((col) => col.id === overId);
               if (isColumn) {
                 tasks[activeIndex].status = overId;
                 return [...tasks];
               }
+              if(!isColumn){
+                // console.log('trash');
+                tasks[activeIndex].status = overId;
+                tasks.filter((task) => {task.id != overId })
+                return [...tasks];
+              }
 
-              tasks[activeIndex].status = tasks[overIndex].status
-
-
+              // tasks[activeIndex].status = tasks[overIndex].status;
 
               //array move function
               // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]
               // arrayMove();
-              
-              return arrayMove(tasks, activeIndex, overIndex);
-            })
-            if (tasks[activeIndex].status == "completed") {
 
+              return arrayMove(tasks, activeIndex, overIndex);
+            });
+            if (tasks[activeIndex].status == "completed") {
               setTasks((tasks) =>
                 tasks.map((task, index) => {
                   if (index === activeIndex) {
@@ -127,6 +133,7 @@ function TaskContainer() {
           <div className="colo">
             <Column />
           </div>
+          <Trash />
           <DragOverlay>
             {activeTask ? (
               <div>
