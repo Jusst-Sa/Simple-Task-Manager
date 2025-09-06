@@ -12,13 +12,13 @@ function Trash() {
     <>
       <div>
         {trashCol.map((trash) => {
-          const { setNodeRef } = useDroppable({ id: trash.id });
+          const { setNodeRef, isOver } = useDroppable({ id: trash.id });
           // console.log(isOver);
           
           return (
             <>
-              <div key={trash.id} ref={setNodeRef} className="">
-                <TrashContainer trash={trash}/>
+              <div ref={setNodeRef} className="">
+                <TrashContainer key={trash.id} trash={trash} isOver={isOver}/>
               </div>
             </>
           );

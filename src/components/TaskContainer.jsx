@@ -5,6 +5,7 @@ import { useState } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import { TaskContext } from "./contexts/TaskContext";
 import "./TaskContainer.css";
+import { motion } from "motion/react";
 import Column from "./TaskColumn/Column";
 import { getDate } from "./utils/date";
 import { SortableItem } from "./TaskColumn/SortableItem";
@@ -17,11 +18,13 @@ import {
   DragOverlay,
 } from "@dnd-kit/core";
 import Trash from "./TrashColumn/Trash";
+import { AnimatePresence } from "motion/react";
 // import TaskColumn from "./TaskColumn/TaskColumn";
 
 function TaskContainer() {
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [readyToDelete, setReadyToDelete] = useState(false);
   const [trashCol, setTrashCol] = useState([{ id: "trash", title: "Trash" }]);
   const [columns, setColumns] = useState([
     {
@@ -55,7 +58,15 @@ function TaskContainer() {
   return (
     <>
       <TaskContext.Provider
-        value={[input, setInput, tasks, setTasks, columns, trashCol]}
+        value={[
+          input,
+          setInput,
+          tasks,
+          setTasks,
+          columns,
+          trashCol,
+          readyToDelete,
+        ]}
       >
         <TaskInput />
 
@@ -94,17 +105,24 @@ function TaskContainer() {
             setTasks((tasks) => {
               const isColumn = columns.find((col) => col.id === overId);
               if (isColumn) {
+                setReadyToDelete(false);
                 tasks[activeIndex].status = overId;
-                return [...tasks];
-              }
-              if(!isColumn){
-                // console.log('trash');
-                tasks[activeIndex].status = overId;
-                tasks.filter((task) => {task.id != overId })
+                
                 return [...tasks];
               }
 
-              // tasks[activeIndex].status = tasks[overIndex].status;
+              if (!isColumn && tasks[activeIndex].status == "completed") {
+                setReadyToDelete(true);
+                tasks[activeIndex].status = overId;
+                tasks.filter((task) => {
+                  task.id != overId;
+                });
+                return [...tasks];
+              }
+              
+              if (overIndex >= 0) {
+                tasks[activeIndex].status = tasks[overIndex].status;
+              }
 
               //array move function
               // [1, 2, 3] ---> if we move 1 to be at the bottom it will change to this [2, 3, 1]

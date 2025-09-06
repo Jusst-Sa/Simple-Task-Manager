@@ -6,7 +6,7 @@ import { useDroppable } from '@dnd-kit/core'
 
 function Column() {
 
-    const [,,,,columns] = useContext(TaskContext)
+    const [,,,,columns,] = useContext(TaskContext)
 
 
   return (
@@ -17,9 +17,12 @@ function Column() {
           const { setNodeRef } = useDroppable({ id: col.id });
 
           return (
-            <div  key={col.id} ref={setNodeRef} className="column">
-              <ColumnContainer col={col} />
+            <>
+            <div key={col.id} ref={setNodeRef} className="column">
+              <ColumnContainer  col={col} />
             </div>
+            </>
+            
           );
         })}
       </div>
